@@ -11,10 +11,11 @@ slideNumber: true
 
 **Shaun Jackman** [\@sjackman][]
 
-Benjamin P Vandervalk, Rene L Warren, Hamid Mohamadi, Justin Chu, Sarah Yeo, Lauren Coombe, Joerg Bohlmann, Steven JM Jones, Inanc Birol
+Lauren Coombe, Justin Chu, Rene L Warren, Benjamin P Vandervalk, Sarah Yeo, Zhuyi Xue, Hamid Mohamadi, Joerg Bohlmann, Steven JM Jones, Inanc Birol
 
 | RECOMB-Seq 2018-04-19
 | <https://sjackman.ca/tigmint-recomb-slides>
+| Funded by Genome Canada &middot; Genome BC &middot; NIH &middot; NSERC
 | [![Creative Commons Attribution License](images/cc-by.png)][cc-by]
 
 [\@sjackman]: http://twitter.com/sjackman
@@ -22,15 +23,10 @@ Benjamin P Vandervalk, Rene L Warren, Hamid Mohamadi, Justin Chu, Sarah Yeo, Lau
 
 ## Shaun Jackman
 
-| [BCCA Genome Sciences Centre][]
-| Vancouver, Canada
-| [\@sjackman][] &middot; [github.com/sjackman][] &middot; [sjackman.ca][]
-
+| [Birol Bioinformatics Technology Lab](http://www.birollab.ca)
+| [BC Cancer Genome Sciences Centre](http://bcgsc.ca) &middot; Vancouver, Canada
+| [\@sjackman][] &middot; [github.com/sjackman](https://github.com/sjackman) &middot; [sjackman.ca](http://sjackman.ca)
 | ![Shaun's head shot](images/sjackman.jpg)
-
-[BCCA Genome Sciences Centre]: http://bcgsc.ca
-[github.com/sjackman]: https://github.com/sjackman
-[sjackman.ca]: http://sjackman.ca
 
 ----------------------------------------
 
@@ -116,9 +112,10 @@ fin
 
 ## Shaun Jackman
 
-| [BCCA Genome Sciences Centre][]
+| [Birol Bioinformatics Technology Lab](http://www.birollab.ca)
+| [BC Cancer Genome Sciences Centre](http://bcgsc.ca) &middot; Vancouver, Canada
 | Vancouver, Canada
-| [\@sjackman][] &middot; [github.com/sjackman][] &middot; [sjackman.ca][]
+| [\@sjackman][] &middot; [github.com/sjackman](https://github.com/sjackman) &middot; [sjackman.ca](http://sjackman.ca)
 
 **Tigmint** \
 <https://github.com/bcgsc/tigmint>
