@@ -6,24 +6,26 @@ all: tigmint-slides.html
 clean:
 	rm -f tigmint-slides.html
 
-deploy: index.html
+# Deploy the slides to GitHub Pages.
+deploy: tigmint-slides.html
 	git checkout -B gh-pages
+	cp $< index.html
 	git add index.html
-	git commit -m 'Render index.html'
+	git commit -m 'Add index.html'
 	git push --force
 	git checkout master
 
+# Install dependencies.
 install-deps:
 	brew install pandoc
 
+# Create the HTML slides.
 %.html: %.md reveal.js/js/reveal.js
 	pandoc -st revealjs -V theme:sky -o $@ $<
 
+# Create the self-contained HTML slides.
 %-self-contained.html: %.md reveal.js/js/reveal.js
 	pandoc -st revealjs -V theme:sky --self-contained -o $@ $<
-
-index.html: tigmint-slides.html
-	cp $< $@
 
 # Download reveal.js
 revealjs-3.6.0.tar.gz:
