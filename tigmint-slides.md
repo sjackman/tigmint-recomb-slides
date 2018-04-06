@@ -7,7 +7,7 @@ slideNumber: true
 
 ## Tigmint
 
-### Correct Misassemblies Using Linked Reads From Large Molecules
+### Correcting Misassemblies Using Linked Reads From Large Molecules
 
 **Shaun Jackman** [\@sjackman][]
 
@@ -26,7 +26,7 @@ Benjamin P Vandervalk, Rene L Warren, Hamid Mohamadi, Justin Chu, Sarah Yeo, Lau
 | Vancouver, Canada
 | [\@sjackman][] &middot; [github.com/sjackman][] &middot; [sjackman.ca][]
 
-![](images/sjackman.jpg)
+| ![Shaun's head shot](images/sjackman.jpg)
 
 [BCCA Genome Sciences Centre]: http://bcgsc.ca
 [github.com/sjackman]: https://github.com/sjackman
@@ -36,49 +36,44 @@ Benjamin P Vandervalk, Rene L Warren, Hamid Mohamadi, Justin Chu, Sarah Yeo, Lau
 
 ![10x Genomics Chromium Linked Reads <http://www.10xgenomics.com/assembly/>](images/10xgenomics.png)
 
-<aside class="notes">
-- Large molecules of DNA (100 kbp and up) are isolated in partitions
-- Each partition has its own barcode
-- Reads from the same molecule share the same barcode
-- One nanogram of input DNA with 10x Genomics Chromium
-</aside>
-
 ## Linked Reads
 
 - Call variants in repetitive regions
 - Identify structural variants
 - Phase variants
+- Genome sequence assembly
+- Scaffolding
 
 ## Contigs and scaffolds come to an end due to...
 
 - repeats
 - sequencing gaps
-- heterozygous variation
+- structural variation
 - misassemblies
 
 ## Misassemblies limit contiguity
 
 particularly for highly contiguous assemblies.
 
-Most scaffolding algorithms address repeats and gaps, but not misassemblies.
+Most scaffolding tools do not correct misassemblies.
 
 ----------------------------------------
 
-![](images/diagram-1.png)
+| ![Misassembled](images/diagram-1.png)
 
 ----------------------------------------
 
-![Correct misassemblies](images/diagram-1.png)
-
-![](images/diagram-2.png)
+| ![Misassembled](images/diagram-1.png)
+| Correct misassemblies
+| ![Correct misassemblies](images/diagram-2.png)
 
 ----------------------------------------
 
-![Correct misassemblies](images/diagram-1.png)
-
-![Scaffold](images/diagram-2.png)
-
-![](images/diagram-3.png)
+| ![Misassembled](images/diagram-1.png)
+| Correct misassemblies
+| ![Correct misassemblies](images/diagram-2.png)
+| Scaffold
+| ![Scaffold](images/diagram-3.png)
 
 ----------------------------------------
 
@@ -87,33 +82,34 @@ Most scaffolding algorithms address repeats and gaps, but not misassemblies.
 ## Tigmint
 
 - Map reads to the assembly
-- Infer the start and end of each molecule
-- Each *w* bp window ought to be spanned by *n* molecules
-- Cut the sequence at positions with insufficient coverage
+- Group reads within *d* bp of each other (*d* = 50 kbp)
+- Infer start and end coordinates of molecules
+- Construct an interval tree of the molecules
+- Each *w* bp region ought to be spanned by *n* molecules \
+  (*w* = 1 kbp, *n* = 20)
+- Identify regions with fewer than *n* spanning molecules
+- Cut sequences at regions with insufficient coverage
 
 ----------------------------------------
 
-![Scatter plot of molecule start and end coordiantes](images/scatterplot.png)
+| ![IGV screen shot](images/10824873:254952.png)
 
 ----------------------------------------
 
-[![Graph of 10 kbp segments sharing barcodes](images/segments-graph.png)](images/segments-graph.pdf)
+| ![Jupiter plot](images/jupiter.png)
 
-## Menagerie of Misassemblies
+## Results
 
-- **Chimeric sequence**
-- **Missing sequence** (deletion)
-- Chimeric insertion
-- Inversion
-- Collapsed repeat
+- Assembly of human HG004 with PE, MP, and linked reads
+- Scaffolding with ARCS improved NGA50 from 3 to 8 Mbp
+- Tigmint reduced misassemblies by 216 (27% reduction)
+- Tigmint + ARCS improved NGA50 over five-fold to 16 Mbp
+- Improves long read assemblies too! (see poster)
 
-----------------------------------------
+## Conclusion
 
-![](images/10824873:254952.png)
-
-----------------------------------------
-
-![Tigmint](images/jupiter.png)
+- Scaffolding after correcting with Tigmint yields an assembly both more correct and more contiguous
+- Linked reads permit cost-effective assembly of large genomes using high-throughput sequencing
 
 fin
 ================================================================================
@@ -132,3 +128,14 @@ fin
 
 **Markdown source code** \
 <https://github.com/sjackman/tigmint-recomb-slides>
+
+Supplementary Slides
+================================================================================
+
+----------------------------------------
+
+| ![Scatter plot of molecule start and end coordiantes](images/scatterplot.png)
+
+## Graph of 10 kbp segments sharing barcodes
+
+[![Graph of 10 kbp segments sharing barcodes](images/segments-graph.png)](images/segments-graph.pdf)
