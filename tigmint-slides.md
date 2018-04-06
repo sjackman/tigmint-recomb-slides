@@ -134,6 +134,17 @@ Supplementary Slides
 
 ----------------------------------------
 
+![Assemblies of HG004](images/metrics.png)
+
+Supernova uses linked reads only.
+Other use PE + MP + linked reads.
+
+----------------------------------------
+
+![Long read assemblies of HG004](images/metrics-sms.png)
+
+----------------------------------------
+
 | ![Scatter plot of molecule start and end coordiantes](images/scatterplot.png)
 
 ## Graph of 10 kbp segments sharing barcodes
