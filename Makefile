@@ -25,14 +25,21 @@ install-deps:
 index.html: tigmint-slides.html
 	cp $< $@
 
-revealjs-3.5.0.tar.gz:
-	curl -L -o $@ https://github.com/hakimel/reveal.js/archive/3.5.0.tar.gz
+# Download reveal.js
+revealjs-3.6.0.tar.gz:
+	curl -L -o $@ https://github.com/hakimel/reveal.js/archive/3.6.0.tar.gz
 
-reveal.js-3.5.0/js/reveal.js: revealjs-3.5.0.tar.gz
+# Extract reveal.js
+reveal.js-3.6.0/js/reveal.js: revealjs-3.6.0.tar.gz
 	tar xf $<
 	touch $@
 
-reveal.js/js/reveal.js: reveal.js-3.5.0/js/reveal.js
-	cp -a reveal.js-3.5.0 reveal.js
-	sed -i .orig -e 's/text-transform: uppercase;//' reveal.js/css/theme/sky.css
+# Patch reveal.js
+reveal.js/js/reveal.js: reveal.js-3.6.0/js/reveal.js
+	cp -a reveal.js-3.6.0 reveal.js
+	sed -i .orig \
+		-e 's/text-transform: uppercase;//' \
+		-e 's/font-size: 40px;/font-size: 34px;/' \
+		-e 's/border: 4px solid #333;/border: 2px solid #333;/' \
+		reveal.js/css/theme/sky.css
 	touch $@
