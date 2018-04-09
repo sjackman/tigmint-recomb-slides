@@ -76,7 +76,9 @@ Most scaffolding tools do not correct misassemblies.
 
 ![<https://github.com/bcgsc/tigmint>](images/tigmint-logo.png)
 
-## Tigmint
+## Method
+
+::: incremental
 
 - Map reads to the assembly
 - Group reads within *d* bp of each other (*d* = 50 kbp)
@@ -86,6 +88,8 @@ Most scaffolding tools do not correct misassemblies.
   (*w* = 1 kbp, *n* = 20)
 - Identify regions with fewer than *n* spanning molecules
 - Cut sequences at regions with insufficient coverage
+
+:::
 
 ----------------------------------------
 
