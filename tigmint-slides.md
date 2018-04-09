@@ -1,4 +1,5 @@
 ---
+pagetitle: 'Tigmint: Correcting Misassemblies Using Linked Reads From Large Molecules'
 author: 'Shaun D Jackman'
 date: '2018-04-19'
 history: true
