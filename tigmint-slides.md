@@ -1,7 +1,7 @@
 ---
 pagetitle: 'Tigmint: Correcting Misassemblies Using Linked Reads From Large Molecules'
 author: 'Shaun D Jackman'
-date: '2018-04-19'
+date: '2018-04-20'
 history: true
 slideNumber: true
 ---
@@ -14,7 +14,7 @@ slideNumber: true
 
 Lauren Coombe, Justin Chu, Rene L Warren, Benjamin P Vandervalk, Sarah Yeo, Zhuyi Xue, Hamid Mohamadi, Joerg Bohlmann, Steven JM Jones, Inanc Birol
 
-| RECOMB-Seq 2018-04-19
+| RECOMB-Seq 2018-04-20
 | <https://sjackman.ca/tigmint-recomb-slides>
 | Funded by Genome Canada &middot; Genome BC &middot; NIH &middot; NSERC
 | [![Creative Commons Attribution License](images/cc-by.png)][cc-by]
