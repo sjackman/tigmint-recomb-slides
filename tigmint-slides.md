@@ -29,17 +29,24 @@ Lauren Coombe, Justin Chu, Rene L Warren, Benjamin P Vandervalk, Sarah Yeo, Zhuy
 | [\@sjackman][] &middot; [github.com/sjackman](https://github.com/sjackman) &middot; [sjackman.ca](http://sjackman.ca)
 | ![Shaun's head shot](images/sjackman.jpg)
 
-----------------------------------------
-
-![10x Genomics Chromium Linked Reads <http://www.10xgenomics.com/assembly/>](images/10xgenomics.png)
-
 ## Linked Reads
 
-- Call variants in repetitive regions
-- Identify structural variants
-- Phase variants
-- Genome sequence assembly
-- Scaffolding
+| ![Linked reads](images/linked-reads.png)
+
+## Tools for Linked Reads
+
+| **Align linked reads**
+| Lariat (Long Ranger) &middot; EMA
+| **Structural variants**
+| Long Ranger &middot; GROC-SVs &middot; NAIBR &middot; SVenX &middot; Topsorter
+| **Phase variants**
+| Long Ranger
+| **Genome sequence assembly**
+| Supernova
+| **Scaffolding**
+| ARCS &middot; Architect &middot; Fragscaff &middot; Scaff10x
+
+<https://github.com/johandahlberg/awesome-10x-genomics>
 
 ## Contigs and scaffolds come to an end due to...
 
@@ -74,7 +81,7 @@ Most scaffolding tools do not correct misassemblies.
 
 ----------------------------------------
 
-![<https://github.com/bcgsc/tigmint>](images/tigmint-logo.png)
+![<https://github.com/bcgsc/tigmint>](images/tigmint-logo.png){.plain}
 
 ## Method
 
@@ -93,11 +100,14 @@ Most scaffolding tools do not correct misassemblies.
 
 ----------------------------------------
 
-| ![IGV screen shot](images/10824873:254952.png)
+![](images/10824873:254952.png)
+
+| Tracks from top to bottom
+| molecule coverage, molecules, read coverage, reads
 
 ----------------------------------------
 
-| ![Jupiter plot](images/jupiter.png)
+![<https://github.com/JustinChu/JupiterPlot>](images/jupiter.png)
 
 ## Results
 
@@ -105,47 +115,60 @@ Most scaffolding tools do not correct misassemblies.
 - Scaffolding with ARCS improved NGA50 from 3 to 8 Mbp
 - Tigmint reduced misassemblies by 216 (27% reduction)
 - Tigmint + ARCS improved NGA50 over five-fold to 16 Mbp
-- Improves long read assemblies too! (see poster)
+
+&nbsp;
+
+| **`bwa mem`** Map reads to assembly
+| 5&frac12; hours, 17 GB RAM, 48 threads
+| **`tigmint-molecule`** Group reads into molecules
+| 3&frac14; hours, 0.08 GB RAM, 1 thread
+| **`tigmint-cut`** Identify misassemblies and cut sequences
+| 7 minutes, 3.3 GB RAM, 48 threads
+
+----------------------------------------
+
+![Human genome assemblies (GIAB HG004 NA24143)](images/metrics.png){height=500px}
+
+Supernova uses only linked reads, others PE+MP+LR.
+
+----------------------------------------
+
+![Corrects and improves long read assemblies too!](images/metrics-sms.png)
 
 ## Conclusion
 
-- Scaffolding after correcting with Tigmint yields an assembly both more correct and more contiguous
-- Linked reads permit cost-effective assembly of large genomes using high-throughput sequencing
+Scaffolding after correcting with Tigmint yields an assembly both more correct and more contiguous.
+
+Linked reads permit cost-effective assembly of large genomes using high-throughput sequencing.
 
 fin
 ================================================================================
 
 ## Shaun Jackman
 
-| [Birol Bioinformatics Technology Lab](http://www.birollab.ca)
-| [BC Cancer Genome Sciences Centre](http://bcgsc.ca) &middot; Vancouver, Canada
-| Vancouver, Canada
-| [\@sjackman][] &middot; [github.com/sjackman](https://github.com/sjackman) &middot; [sjackman.ca](http://sjackman.ca)
+[\@sjackman][] &middot; [github.com/sjackman](https://github.com/sjackman) &middot; [sjackman.ca](http://sjackman.ca)
 
-**Tigmint** \
-<https://github.com/bcgsc/tigmint>
+Lauren Coombe, Justin Chu, Rene L Warren, Benjamin P Vandervalk, Sarah Yeo, Zhuyi Xue, Hamid Mohamadi, Joerg Bohlmann, Steven JM Jones, Inanc Birol
 
-**Slides** \
-<https://sjackman.ca/tigmint-recomb-slides>
+| **Tigmint**
+| <https://github.com/bcgsc/tigmint>
 
-**Markdown source code** \
-<https://github.com/sjackman/tigmint-recomb-slides>
+| **Slides**
+| <https://sjackman.ca/tigmint-recomb-slides>
+
+| **Markdown source code**
+| <https://github.com/sjackman/tigmint-recomb-slides>
+
+Funded by Genome Canada &middot; Genome BC &middot; NIH &middot; NSERC
 
 Supplementary Slides
 ================================================================================
 
-----------------------------------------
+## 10x Genomics Linked Reads
 
-![Assemblies of HG004](images/metrics.png)
+| ![10x Genomics Chromium Linked Reads <http://www.10xgenomics.com/assembly/>](images/10xgenomics.png)
 
-Supernova uses linked reads only.
-Other use PE + MP + linked reads.
-
-----------------------------------------
-
-![Long read assemblies of HG004](images/metrics-sms.png)
-
-----------------------------------------
+## Scatter Plot
 
 | ![Scatter plot of molecule start and end coordiantes](images/scatterplot.png)
 
