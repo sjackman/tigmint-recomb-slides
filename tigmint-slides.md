@@ -109,14 +109,33 @@ Most scaffolding tools do not correct misassemblies.
 
 ![<https://github.com/JustinChu/JupiterPlot>](images/jupiter.png)
 
-## Results
+----------------------------------------
 
-- Assembly of human HG004 with PE, MP, and linked reads
+| ![Human genome assembly (GIAB HG004 NA24143)](images/metrics-abyss.png){height=400px}
+
+- Assemble human HG004 with PE, MP, and linked reads
 - Scaffolding with ARCS improved NGA50 from 3 to 8 Mbp
 - Tigmint reduced misassemblies by 216 (27% reduction)
 - Tigmint + ARCS improved NGA50 over five-fold to 16 Mbp
 
-&nbsp;
+----------------------------------------
+
+| ![Human genome assemblies (GIAB HG004 NA24143)](images/metrics.png){height=500px}
+
+Note: Supernova used only linked reads, others PE+MP+LR.
+
+----------------------------------------
+
+![Corrects and improves long read assemblies too!](images/metrics-sms.png)
+
+| Sequencing                  | Nanopore | PacBio   |
+| --------------------------- | -------: | -------: |
+| Assembler                   | Canu     | Falcon   |
+| NGA50 before Tigmint + ARCS | 5.4 Mbp  | 4.2 Mbp  |
+| NGA50 after Tigmint + ARCS  | 10.9 Mbp | 12.0 Mbp |
+| Improvement                 | 2.0x     | 2.9x     |
+
+## Time and Memory
 
 | **`bwa mem`** Map reads to assembly
 | 5&frac12; hours, 17 GB RAM, 48 threads
@@ -124,16 +143,6 @@ Most scaffolding tools do not correct misassemblies.
 | 3&frac14; hours, 0.08 GB RAM, 1 thread
 | **`tigmint-cut`** Identify misassemblies and cut sequences
 | 7 minutes, 3.3 GB RAM, 48 threads
-
-----------------------------------------
-
-![Human genome assemblies (GIAB HG004 NA24143)](images/metrics.png){height=500px}
-
-Supernova uses only linked reads, others PE+MP+LR.
-
-----------------------------------------
-
-![Corrects and improves long read assemblies too!](images/metrics-sms.png)
 
 ## Conclusion
 
