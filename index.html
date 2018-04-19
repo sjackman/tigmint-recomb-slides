@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Shaun D Jackman">
+  <meta name="dcterms.date" content="2018-04-20">
+  <title>Tigmint: Correcting Misassemblies Using Linked Reads From Large Molecules</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="tigmint" class="slide level2">
+<h2>Tigmint</h2>
+<h3 id="correcting-misassemblies-using-linked-reads-from-large-molecules">Correcting Misassemblies Using Linked Reads From Large Molecules</h3>
+<p><strong>Shaun Jackman</strong> <a href="http://twitter.com/sjackman">@sjackman</a></p>
+<p>Lauren Coombe, Justin Chu, Rene L Warren, Benjamin P Vandervalk, Sarah Yeo, Zhuyi Xue, Hamid Mohamadi, Joerg Bohlmann, Steven JM Jones, Inanc Birol</p>
+<div class="line-block">RECOMB-Seq 2018-04-20<br />
+<a href="https://sjackman.ca/tigmint-recomb-slides" class="uri">https://sjackman.ca/tigmint-recomb-slides</a><br />
+Funded by Genome Canada · Genome BC · NIH · NSERC<br />
+<a href="http://creativecommons.org/licenses/by/4.0/"><img data-src="images/cc-by.png" alt="Creative Commons Attribution License" /></a></div>
+</section>
+<section id="shaun-jackman" class="slide level2">
+<h2>Shaun Jackman</h2>
+<div class="line-block"><a href="http://www.birollab.ca">Birol Bioinformatics Technology Lab</a><br />
+<a href="http://bcgsc.ca">BC Cancer Genome Sciences Centre</a> · Vancouver, Canada<br />
+<a href="http://twitter.com/sjackman">@sjackman</a> · <a href="https://github.com/sjackman">github.com/sjackman</a> · <a href="http://sjackman.ca">sjackman.ca</a><br />
+<img data-src="images/sjackman.jpg" alt="Shaun’s head shot" /></div>
+</section>
+<section id="linked-reads" class="slide level2">
+<h2>Linked Reads</h2>
+<div class="line-block"><img data-src="images/linked-reads.png" alt="Linked reads" /></div>
+</section>
+<section id="tools-for-linked-reads" class="slide level2">
+<h2>Tools for Linked Reads</h2>
+<div class="line-block"><strong>Align linked reads</strong><br />
+Lariat (Long Ranger) · EMA<br />
+<strong>Structural variants</strong><br />
+Long Ranger · GROC-SVs · NAIBR · SVenX · Topsorter<br />
+<strong>Phase variants</strong><br />
+Long Ranger<br />
+<strong>Genome sequence assembly</strong><br />
+Supernova<br />
+<strong>Scaffolding</strong><br />
+ARCS · Architect · Fragscaff · Scaff10x</div>
+<p><a href="https://github.com/johandahlberg/awesome-10x-genomics" class="uri">https://github.com/johandahlberg/awesome-10x-genomics</a></p>
+</section>
+<section id="contigs-and-scaffolds-come-to-an-end-due-to" class="slide level2">
+<h2>Contigs and scaffolds come to an end due to…</h2>
+<ul>
+<li>repeats</li>
+<li>sequencing gaps</li>
+<li>structural variation</li>
+<li>misassemblies</li>
+</ul>
+</section>
+<section id="misassemblies-limit-contiguity" class="slide level2">
+<h2>Misassemblies limit contiguity</h2>
+<p>particularly for highly contiguous assemblies.</p>
+<p>Most scaffolding tools do not correct misassemblies.</p>
+</section>
+<section class="slide level2">
+
+<div class="line-block"><img data-src="images/diagram-1.png" alt="Misassembled" /></div>
+</section>
+<section class="slide level2">
+
+<div class="line-block"><img data-src="images/diagram-1.png" alt="Misassembled" /><br />
+Correct misassemblies<br />
+<img data-src="images/diagram-2.png" alt="Correct misassemblies" /></div>
+</section>
+<section class="slide level2">
+
+<div class="line-block"><img data-src="images/diagram-1.png" alt="Misassembled" /><br />
+Correct misassemblies<br />
+<img data-src="images/diagram-2.png" alt="Correct misassemblies" /><br />
+Scaffold<br />
+<img data-src="images/diagram-3.png" alt="Scaffold" /></div>
+</section>
+<section class="slide level2">
+
+<figure>
+<img data-src="images/tigmint-logo.png" alt="https://github.com/bcgsc/tigmint" class="plain" /><figcaption><a href="https://github.com/bcgsc/tigmint" class="uri">https://github.com/bcgsc/tigmint</a></figcaption>
+</figure>
+</section>
+<section id="method" class="slide level2">
+<h2>Method</h2>
+<div>
+<ul>
+<li class="fragment">Map reads to the assembly</li>
+<li class="fragment">Group reads within <em>d</em> bp of each other (<em>d</em> = 50 kbp)</li>
+<li class="fragment">Infer start and end coordinates of molecules</li>
+<li class="fragment">Construct an interval tree of the molecules</li>
+<li class="fragment">Each <em>w</em> bp region ought to be spanned by <em>n</em> molecules<br />
+(<em>w</em> = 1 kbp, <em>n</em> = 20)</li>
+<li class="fragment">Identify regions with fewer than <em>n</em> spanning molecules</li>
+<li class="fragment">Cut sequences at regions with insufficient coverage</li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<p><img data-src="images/10824873:254952.png" /></p>
+<div class="line-block">Tracks from top to bottom<br />
+molecule coverage, molecules, read coverage, reads</div>
+</section>
+<section class="slide level2">
+
+<figure>
+<img data-src="images/jupiter.png" alt="https://github.com/JustinChu/JupiterPlot" /><figcaption><a href="https://github.com/JustinChu/JupiterPlot" class="uri">https://github.com/JustinChu/JupiterPlot</a></figcaption>
+</figure>
+</section>
+<section class="slide level2">
+
+<div class="line-block"><img data-src="images/metrics-abyss.png" alt="Human genome assembly (GIAB HG004 NA24143)" height="400" /></div>
+<ul>
+<li>Assemble human HG004 with PE, MP, and linked reads</li>
+<li>Scaffolding with ARCS improved NGA50 from 3 to 8 Mbp</li>
+<li>Tigmint reduced misassemblies by 216 (27% reduction)</li>
+<li>Tigmint + ARCS improved NGA50 over five-fold to 16 Mbp</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<div class="line-block"><img data-src="images/metrics.png" alt="Human genome assemblies (GIAB HG004 NA24143)" height="500" /></div>
+<p>Note: Supernova used only linked reads, others PE+MP+LR.</p>
+</section>
+<section class="slide level2">
+
+<figure>
+<img data-src="images/metrics-sms.png" alt="Corrects and improves long read assemblies too!" /><figcaption>Corrects and improves long read assemblies too!</figcaption>
+</figure>
+<table>
+<thead>
+<tr class="header">
+<th>Sequencing</th>
+<th style="text-align: right;">Nanopore</th>
+<th style="text-align: right;">PacBio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Assembler</td>
+<td style="text-align: right;">Canu</td>
+<td style="text-align: right;">Falcon</td>
+</tr>
+<tr class="even">
+<td>NGA50 before Tigmint + ARCS</td>
+<td style="text-align: right;">5.4 Mbp</td>
+<td style="text-align: right;">4.2 Mbp</td>
+</tr>
+<tr class="odd">
+<td>NGA50 after Tigmint + ARCS</td>
+<td style="text-align: right;">10.9 Mbp</td>
+<td style="text-align: right;">12.0 Mbp</td>
+</tr>
+<tr class="even">
+<td>Improvement</td>
+<td style="text-align: right;">2.0x</td>
+<td style="text-align: right;">2.9x</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="time-and-memory" class="slide level2">
+<h2>Time and Memory</h2>
+<div class="line-block"><strong><code>bwa mem</code></strong> Map reads to assembly<br />
+5½ hours, 17 GB RAM, 48 threads<br />
+<strong><code>tigmint-molecule</code></strong> Group reads into molecules<br />
+3¼ hours, 0.08 GB RAM, 1 thread<br />
+<strong><code>tigmint-cut</code></strong> Identify misassemblies and cut sequences<br />
+7 minutes, 3.3 GB RAM, 48 threads</div>
+</section>
+<section id="conclusion" class="slide level2">
+<h2>Conclusion</h2>
+<p>Scaffolding after correcting with Tigmint yields an assembly both more correct and more contiguous.</p>
+<p>Linked reads permit cost-effective assembly of large genomes using high-throughput sequencing.</p>
+</section>
+<section><section id="fin" class="title-slide slide level1"><h1>fin</h1></section><section id="posters" class="slide level2">
+<h2>Posters</h2>
+<ul>
+<li>SEQ-7 <strong>Tigmint</strong>: Correcting Assembly Errors Using Linked Reads From Large Molecules</li>
+<li>SEQ-6 <strong>ARKS</strong>: chromosome-scale human genome scaffolding with linked read kmers</li>
+<li>SEQ-10 <strong>ONTig</strong>: Contiguating Genome Assembly using Oxford Nanopore Long Reads</li>
+<li>SEQ-8 <strong>Multi-Index Bloom Filters</strong>: A probabilistic data structure for sensitive multi-reference sequence classification with multiple spaced seeds</li>
+</ul>
+</section><section id="shaun-jackman-1" class="slide level2">
+<h2>Shaun Jackman</h2>
+<p><a href="http://twitter.com/sjackman">@sjackman</a> · <a href="https://github.com/sjackman">github.com/sjackman</a> · <a href="http://sjackman.ca">sjackman.ca</a></p>
+<p>Lauren Coombe, Justin Chu, Rene L Warren, Benjamin P Vandervalk, Sarah Yeo, Zhuyi Xue, Hamid Mohamadi, Joerg Bohlmann, Steven JM Jones, Inanc Birol</p>
+<div class="line-block"><strong>Tigmint</strong><br />
+<a href="https://github.com/bcgsc/tigmint" class="uri">https://github.com/bcgsc/tigmint</a></div>
+<div class="line-block"><strong>Slides</strong><br />
+<a href="https://sjackman.ca/tigmint-recomb-slides" class="uri">https://sjackman.ca/tigmint-recomb-slides</a></div>
+<div class="line-block"><strong>Markdown source code</strong><br />
+<a href="https://github.com/sjackman/tigmint-recomb-slides" class="uri">https://github.com/sjackman/tigmint-recomb-slides</a></div>
+<p>Funded by Genome Canada · Genome BC · NIH · NSERC</p>
+</section></section>
+<section><section id="supplementary-slides" class="title-slide slide level1"><h1>Supplementary Slides</h1></section><section id="x-genomics-linked-reads" class="slide level2">
+<h2>10x Genomics Linked Reads</h2>
+<div class="line-block"><img data-src="images/10xgenomics.png" alt="10x Genomics Chromium Linked Reads http://www.10xgenomics.com/assembly/" /></div>
+</section><section id="scatter-plot" class="slide level2">
+<h2>Scatter Plot</h2>
+<div class="line-block"><img data-src="images/scatterplot.png" alt="Scatter plot of molecule start and end coordiantes" /></div>
+</section><section id="graph-of-10-kbp-segments-sharing-barcodes" class="slide level2">
+<h2>Graph of 10 kbp segments sharing barcodes</h2>
+<p><a href="images/segments-graph.pdf"><img data-src="images/segments-graph.png" alt="Graph of 10 kbp segments sharing barcodes" /></a></p>
+</section></section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
